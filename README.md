@@ -1,1 +1,50 @@
 # Science-paper-extractor
+
+Python script that extracts metadata and summaries from a database of research papers and outputs the combined information into an Excel sheet. The goal of this tool is to provide a preliminary overview of hundreds of research papers, enabling users to find  the most relevant papers for their specific use case.
+
+Note: This tool is not designed for review papers, as review papers are generally important to read in full and do not require summarization or selective reading like other types of research papers.
+
+## Set up
+1. Clone repository
+
+    ```
+    git clone <repo>
+    cd science-paper-extractor
+    ```
+
+2. Environment requirements:
+
+- Python version: Python 3.10.12
+
+- Install `OCR` dependencies (linux):
+    - sudo apt install poppler-utils
+    - sudo apt install tesseract-ocr
+
+- Download `ollama` and pull models: https://ollama.com/download
+    ```
+    ollama pull nomic-embed-text  
+    ollama pull llama3:8b
+    ```
+
+3. Create virtual environment and install `requirements.txt`
+
+    ```
+    python -m venv .venv
+    source .\venv\Scripts\activate
+    pip install -r requirements.txt
+    ```
+
+4. Set up .env if using huggingface
+    ```
+    HUGGINGFACE_API_KEY=your_token_here
+    ```
+
+## Usage
+
+1. Place your research papers into `Data/input`
+2. Run the script:
+
+    ```
+    python3 main.py
+    ```
+3. The output Excel file will be saved as `Data/output/research_papers.csv`.
