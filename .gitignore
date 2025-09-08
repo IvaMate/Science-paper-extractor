@@ -1,3 +1,5 @@
 .venv
-Data/input/*
 .env
+src/__pycache__
+Data/input/*
+Data/output/*

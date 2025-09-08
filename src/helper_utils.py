@@ -1,7 +1,15 @@
 import fitz 
 import os
 from unstructured.partition.pdf import partition_pdf
-import chain_utils
+from . import chain_utils, model_utils
+import yaml
+from langchain_core.prompts import ChatPromptTemplate
+from langchain_core.output_parsers import StrOutputParser, JsonOutputParser
+
+def load_config(path):
+    with open(path, 'r') as f:
+        return yaml.safe_load(f)
+
 
 def extract_metadata(file_path):
     """
@@ -70,14 +78,17 @@ def process_paper(file_path):
 
     # Summarize each chunk concurrently
     print(f"   - Summarizing {len(all_chunks)} text chunks...")
-    chunk_summaries = chain_utils.create_summarization_chain.batch(all_chunks, {"max_concurrency": 5})
-
+    map_prompt = ChatPromptTemplate.from_template(chain_utils.map_prompt_text)
+    summarize_chain = {"element": lambda x: x.text} | map_prompt | model_utils.model | StrOutputParser()
+    chunk_summaries = summarize_chain.batch(all_chunks, {"max_concurrency": 5})
     # Combine all individual summaries into one document for the next step
     combined_summaries = "\n\n---\n\n".join(chunk_summaries)
 
     # Synthesize and extract from the combined summaries
     print("   - Synthesizing and extracting final data...")
-    extracted_summary_data = chain_utils.create_extraction_chain.invoke({"chunk_summaries": combined_summaries})
+    extraction_prompt = ChatPromptTemplate.from_template(chain_utils.extraction_prompt_text)
+    extraction_chain = extraction_prompt | model_utils.model | JsonOutputParser()    
+    extracted_summary_data = extraction_chain.invoke({"chunk_summaries": combined_summaries})
 
     # Standardize keys to lowercase
     standardized_extracted_summary_data = {k.lower(): v for k, v in extracted_summary_data.items()}

@@ -1,14 +1,9 @@
 import os
 import glob
 import pandas as pd
-import yaml
-import helper_utils
+from src import helper_utils
 
-def load_config(path):
-    with open(path, 'r') as f:
-        return yaml.safe_load(f)
-    
-config = load_config("config.json")
+config = helper_utils.load_config("config.yaml")
 PDF_FOLDER = config["PDF_FOLDER"]
 OUTPUT_CSV = config["OUTPUT_CSV"]
 
