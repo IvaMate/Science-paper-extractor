@@ -1,2 +1,3 @@
 PDF_FOLDER : "Data/input"
 OUTPUT_CSV : "Data/output/research_papers.csv" 
+MODEL_PROVIDER : "HF_LOCAL" #HF_LOCAL, HF_API or OLLAMA

@@ -42,9 +42,13 @@ Note: This tool is not designed for review papers, as review papers are generall
 ## Usage
 
 1. Place your research papers into `Data/input`
-2. Run the script:
+2. Choose type of model provider in `config.yaml`:
+- `OLLAMA` - ollama local models
+- `HF_API` - huggingface API models. Needs token to be updated in `.env` file. Note that there is a monthly free credit limitation for some models.
+- `HF_LOCAL` - huggingface models that are run locally. Needs token to be updated in `.env` file.
+3. Run the script:
 
     ```
     python3 main.py
     ```
-3. The output Excel file will be saved as `Data/output/research_papers.csv`.
+4. The output Excel file will be saved as `Data/output/research_papers.csv`.

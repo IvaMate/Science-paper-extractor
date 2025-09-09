@@ -1,16 +1,26 @@
+import logging
 import os
 import glob
 import pandas as pd
 from src import helper_utils
 
+logging.basicConfig(
+    level=logging.INFO,  # or DEBUG for more details
+    format="%(asctime)s [%(levelname)s] %(name)s: %(message)s",
+    handlers=[logging.StreamHandler()]  # logs to console
+)
+
 config = helper_utils.load_config("config.yaml")
 PDF_FOLDER = config["PDF_FOLDER"]
 OUTPUT_CSV = config["OUTPUT_CSV"]
+MODEL_PROVIDER=config["MODEL_PROVIDER"]
 
 if __name__ == "__main__":
+    logger = logging.getLogger(__name__)
+    
     if not os.path.exists(PDF_FOLDER):
         os.makedirs(PDF_FOLDER)
-        print(f"Created folder '{PDF_FOLDER}'. Please add your research papers to this folder and run again.")
+        logger.warning(f"Created folder '{PDF_FOLDER}'. Please add your research papers to this folder and run again.")
         exit()
 
     # Get all PDF files
@@ -20,8 +30,9 @@ if __name__ == "__main__":
         print(f"No PDF files found in the '{PDF_FOLDER}' folder. Please add some papers.")
         exit()
 
-    print(f"Found {len(pdf_files)} PDF(s) to process.")
-
+    #print(f"Found {len(pdf_files)} PDF(s) to process.")
+    logger.info(f"Found {len(pdf_files)} PDF(s) to process.")
+    
     all_results = []
     for file_path in pdf_files:
         try:
@@ -29,7 +40,7 @@ if __name__ == "__main__":
             if result:
                 all_results.append(result)
         except Exception as e:
-            print(f"   - !!! An unhandled error occurred for {os.path.basename(file_path)}: {e}")
+            logger.error(f"Unhandled error in {os.path.basename(file_path)}: {e}")
 
     # Convert results to a pandas DataFrame and save to CSV
     if all_results:
@@ -54,6 +65,6 @@ if __name__ == "__main__":
 
         df = df[final_cols_order]
         df.to_csv(OUTPUT_CSV, index=False)
-        print(f"\nProcessing complete. Results saved to '{OUTPUT_CSV}'.")
+        logger.info(f"Processing complete. Results saved to '{OUTPUT_CSV}'.")
     else:
-        print("\nNo papers were successfully processed.")
+        logger.warning("No papers were successfully processed.")
