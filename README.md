@@ -4,6 +4,29 @@ Python script that extracts metadata and summaries from a database of research p
 
 Note: This tool is not designed for review papers, as review papers are generally important to read in full and do not require summarization or selective reading like other types of research papers.
 
+## Structure
+Science-paper-extractor
+│
+├── src/
+│   ├── __init__.py
+│   ├── main.py                 # main loop
+│   ├── model_loader.py         # model settings
+│   ├── pdf_processing.py       # parsing the data
+│   ├── prompts.py              # promts for LLM chains
+│   └── helper_utils.py         # helper functions
+│
+├── Data/
+│   ├── input/                  
+│   └── output/                 
+│
+├── notebook/
+│   └── demo.ipynb              
+│
+├── requirements.txt            
+├── .env.example     
+├── .gitignore                 
+└── README.md                                    
+
 ## Set up
 1. Clone repository
 
