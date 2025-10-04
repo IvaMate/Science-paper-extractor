@@ -12,7 +12,7 @@ Note: This tool is not designed for review papers, as review papers are generall
     cd science-paper-extractor
     ```
 
-2. Environment requirements:
+2. Python requirements:
 
 - Python version: Python 3.10.12
 
@@ -20,7 +20,7 @@ Note: This tool is not designed for review papers, as review papers are generall
     - sudo apt install poppler-utils
     - sudo apt install tesseract-ocr
 
-- Download `ollama` and pull models: https://ollama.com/download
+- Download `ollama` and pull models: https://ollama.com/download if you want to run it localy
     ```
     ollama pull nomic-embed-text  
     ollama pull llama3:8b
@@ -34,7 +34,7 @@ Note: This tool is not designed for review papers, as review papers are generall
     pip install -r requirements.txt
     ```
 
-4. Set up .env if using huggingface
+4. Set up .env if using huggingface API
     ```
     HUGGINGFACE_API_KEY=your_token_here
     ```
@@ -45,10 +45,9 @@ Note: This tool is not designed for review papers, as review papers are generall
 2. Choose type of model provider in `config.yaml`:
 - `OLLAMA` - ollama local models
 - `HF_API` - huggingface API models. Needs token to be updated in `.env` file. Note that there is a monthly free credit limitation for some models.
-- `HF_LOCAL` - huggingface models that are run locally. Needs token to be updated in `.env` file.
 3. Run the script:
 
     ```
-    python3 main.py
+    python -m src.main
     ```
-4. The output Excel file will be saved as `Data/output/research_papers.csv`.
+4. The output Excel file will be saved as `Data/output/research_papers_data.csv`.
