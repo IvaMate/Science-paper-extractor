@@ -23,7 +23,8 @@ Science-paper-extractor
 ├── notebook/
 │   └── demo.ipynb              
 │
-├── requirements.txt            
+├── requirements.txt  
+├── config.yaml             
 ├── .env.example     
 ├── .gitignore                 
 └── README.md                                    
