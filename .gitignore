@@ -1,5 +1,4 @@
 .venv
 .env
 src/__pycache__
-Data/input/*.pdf
-Data/output/*.csv
+Data/other

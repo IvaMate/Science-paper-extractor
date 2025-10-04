@@ -1,3 +1,4 @@
-PDF_FOLDER : "Data/input"
-OUTPUT_CSV : "Data/output/research_papers.csv" 
-MODEL_PROVIDER : "HF_LOCAL" #HF_LOCAL, HF_API or OLLAMA
+PDF_FOLDER : "./Data/input"
+OUTPUT_CSV : "./Data/output/research_papers.csv" 
+MODEL_PROVIDER : "OLLAMA" #HF_API or OLLAMA
+PARTITION_PDF_STRATEGY : "hi_res" # hi_res, fast, ocr_only
