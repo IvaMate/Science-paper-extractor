@@ -2,7 +2,7 @@
 
 Python script that extracts metadata and summaries from a database of research papers and outputs the combined information into an Excel sheet. The goal of this tool is to provide a preliminary overview of hundreds of research papers, enabling users to find  the most relevant papers for their specific use case.
 
-Note: This tool is not designed for review papers, as review papers are generally important to read in full and do not require summarization or selective reading like other types of research papers.
+Note: This tool is not designed for review papers.
 
 ## Structure
 ```

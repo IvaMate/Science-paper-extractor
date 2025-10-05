@@ -21,9 +21,6 @@ Respond with a JSON object containing the following keys: 'overall_summary', 'me
 - 'methodology': A description of the methodology, techniques, and experiments used in the research.
 - 'algorithms': Give only names of algorithms tested in the paper.
 - 'data_pre_processing_methods': Give description on specific methods when pre-processing data in this research paper.
-- 'results': A concise short description on results.
-- 'conclusion': What is the main paper's conclusion and its contribution.
-- 'dataset': Concise answer 'yes' if the dataset used is publicly available, 'no' if the dataset isn't available or not mentioned.
 - 'future_recommendations': Any future work, open questions, or recommendations for further research mentioned in the paper.
 
 If a particular piece of information is not present, return an empty string for that key.

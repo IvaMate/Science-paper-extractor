@@ -47,7 +47,6 @@ def process_paper(file_path, summarize_chain, extraction_chain ):
         filename=file_path,
         infer_table_structure=False,
         strategy=config["PARTITION_PDF_STRATEGY"], 
-        extract_image_block_types=[],
         chunking_strategy="by_title",
         max_characters=8000,
         combine_text_under_n_chars=1000,
