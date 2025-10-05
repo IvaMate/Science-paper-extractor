@@ -70,8 +70,7 @@ def main():
         df = pd.DataFrame(all_results)
         metadata_cols = ['filename', 'title', 'author', 'subject', 'keywords', 'creator', 'creationYear']
         desired_summary_cols_order = [
-            'overall_summary', 'methodology', 'algorithms', 'data_pre_processing_methods', 'results',
-            'conclusion', 'dataset', 'future_recommendations'
+            'overall_summary', 'methodology', 'future_recommendations'
         ]
         final_cols_order = [col for col in metadata_cols if col in df.columns] + \
                            [col for col in desired_summary_cols_order if col in df.columns]
